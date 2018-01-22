@@ -1,5 +1,6 @@
 package com.rafaels.greendaosample;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -7,11 +8,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.rafaels.greendaosample.adapter.MainFragment;
+import com.rafaels.greendaosample.adapter.ItemActivity;
+import com.rafaels.greendaosample.adapter.ItemFragment;
 import com.rafaels.greendaosample.database.Data;
 import com.rafaels.greendaosample.database.DatabaseManager;
-
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
     private String string ="inicializar";
     private String stringDos="inicializar2";
     private EditText edDos, ed;
-    private MainFragment mainFragment;
 
 
     @Override
@@ -41,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
         Button reloadDataBase = (Button) findViewById(R.id.reloadDataBase);
         Button clear = (Button) findViewById(R.id.clear);
         Button fragment = (Button) findViewById(R.id.fagment_main);
-        mainFragment = (MainFragment) getSupportFragmentManager().findFragmentByTag(MainFragment.TAG);
 
 
 //        List<Data> datas = DatabaseManager.getInstance().getAllDatas();
@@ -114,17 +112,8 @@ public class MainActivity extends AppCompatActivity {
         fragment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if(mainFragment == null) {
-                    mainFragment = new MainFragment();
-                }
-
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.history_fragment_root, mainFragment)
-                        .commit();
-
-
+                Intent i = new Intent(MainActivity.this, ItemActivity.class);
+                startActivity(i);
             }
         });
 
