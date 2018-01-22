@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.rafaels.greendaosample.MainActivity">
+
+
+    <EditText
+        android:id="@+id/ed_string"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/ed_string_dos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/getAllDatas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="getAllDatas" />
+
+    <Button
+        android:id="@+id/insertData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="insert data" />
+
+    <Button
+        android:id="@+id/deletedata"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="delete data" />
+
+    <Button
+        android:id="@+id/updateDatas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="update data" />
+
+    <Button
+        android:id="@+id/getDatas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="get data" />
+
+    <Button
+        android:id="@+id/reloadDataBase"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="reload DataBase" />
+
+    <Button
+        android:id="@+id/clear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="clear" />
+
+    <Button
+        android:id="@+id/fagment_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Fragment" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/history_fragment_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>
