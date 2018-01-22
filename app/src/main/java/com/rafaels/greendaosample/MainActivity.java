@@ -13,9 +13,12 @@ import com.rafaels.greendaosample.adapter.ItemFragment;
 import com.rafaels.greendaosample.database.Data;
 import com.rafaels.greendaosample.database.DatabaseManager;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     private Data data;
+    List<Data> datas;
     private DatabaseManager Dm;
     private String string ="inicializar";
     private String stringDos="inicializar2";
@@ -42,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         Button fragment = (Button) findViewById(R.id.fagment_main);
 
 
-//        List<Data> datas = DatabaseManager.getInstance().getAllDatas();
+        datas = DatabaseManager.getInstance().getAllDatas();
 
 //        string = ed.getText().toString();
 //        stringDos = edDos.getText().toString();
@@ -80,8 +83,14 @@ public class MainActivity extends AppCompatActivity {
         deleteData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                datas = DatabaseManager.getInstance().getAllDatas();
 
-                Dm.deleteData(data);
+                if(!datas.isEmpty()){
+                    Dm.deleteData(datas.get(0));
+                    Dm.reloadDataBase();
+                }
+
+
             }
         });
         updateData.setOnClickListener(new View.OnClickListener() {
