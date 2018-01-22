@@ -80,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
         deleteData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Dm.deleteData(data);
             }
         });
