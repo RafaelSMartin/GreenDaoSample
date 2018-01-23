@@ -1,12 +1,15 @@
 package com.rafaels.greendaosample.adapter;
 
+import android.content.ClipData;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.rafaels.greendaosample.R;
 import com.rafaels.greendaosample.database.Data;
@@ -30,7 +33,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         inflate = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
-    // Listener
+    // Listener para el item completo fuera del adaptador
     public void setOnItemClickListener (View.OnClickListener onClickListener) {
         this.onClickListener = onClickListener;
     }
@@ -47,19 +50,28 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
 
     // Instanciar los items
     @Override
-    public void onBindViewHolder(ItemViewHolder holder, int i) {
-//        holder.fromLanguageTitle.setText(items.get(i).getFromLanguageTitle());
-//        holder.fromText.setText(items.get(i).getFromText());
-//        holder.toLanguageTitle.setText(items.get(i).getToLanguageTitle());
-//        holder.toText.setText(items.get(i).getToText());
-////        viewHolder.favourite.setImageResource(items.get(i).getFavourite());
-//        holder.favourite.setImageResource(R.drawable.favorite);
+    public void onBindViewHolder(ItemViewHolder holder, int position) {
 
         List<Data> results = DatabaseManager.getInstance().getAllDatas();
-        Data data = new Data();
+
+        ItemViewHolder itemViewHolder = (ItemViewHolder) holder;
+        itemViewHolder.bind(results, position);
+
+
+//        holder.string.setText(results.get(position).getString());
+//        holder.stringDos.setText(results.get(position).getStringDos());
+//        holder.delete.setImageResource(R.drawable.ic_delete);
 //
-        holder.string.setText(results.get(i).getString());
-        holder.stringDos.setText(results.get(i).getStringDos());
+//        // Listener para cada item en particular
+//        holder.delete.setOnClickListener(v -> {
+//            Log.d("ItemAdaptador", position+"");
+//
+//            DatabaseManager.getInstance().deleteData(items.get(position).getData());
+//
+//            items.remove(position);
+//            notifyItemRemoved(position);
+//            notifyItemRangeChanged(position, items.size());
+//        });
 
 
     }
@@ -72,18 +84,37 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
 
 
     // Clase ViewHolder
-    public static class ItemViewHolder extends RecyclerView.ViewHolder {
+    public class ItemViewHolder extends RecyclerView.ViewHolder {
         // Campos respectivos de un item
         public TextView string;
         public TextView stringDos;
-
+        public ImageView delete;
 
         public ItemViewHolder(View itemView) {
             super(itemView);
             string = (TextView) itemView.findViewById(R.id.textView);
             stringDos = (TextView) itemView.findViewById(R.id.textViewDos);
-
+            delete = (ImageView) itemView.findViewById(R.id.delete);
         }
+
+        public void bind(List<Data> results, int position){
+
+            string.setText(results.get(position).getString());
+            stringDos.setText(results.get(position).getStringDos());
+            delete.setImageResource(R.drawable.ic_delete);
+
+            // Listener para cada item en particular
+            delete.setOnClickListener(v -> {
+                Log.d("ItemAdaptador", position+"");
+
+                DatabaseManager.getInstance().deleteData(items.get(position).getData());
+
+                items.remove(position);
+                notifyItemRemoved(position);
+                notifyItemRangeChanged(position, items.size());
+            });
+        }
+
     }
 
 

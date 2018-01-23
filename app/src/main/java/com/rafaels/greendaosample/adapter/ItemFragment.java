@@ -49,9 +49,10 @@ public class ItemFragment extends Fragment {
         List<Data> results = DatabaseManager.getInstance().getAllDatas();
         items = new ArrayList(results.size());
         Data data = new Data();
-
+//
         for(int i = 0; i < results.size(); ++i){
-            items.add(new ItemData(data.getString(), data.getStringDos()));
+            items.add(new ItemData(data.getString(), data.getStringDos(),
+                    R.drawable.ic_delete, results.get(i)));
         }
 
         // Obtener el Recycler
@@ -65,12 +66,13 @@ public class ItemFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 int pos= recyclerView.getChildAdapterPosition(view);
-                Toast.makeText(context, "Selección: " + pos , Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "Selección: " + pos, Toast.LENGTH_LONG).show();
 
             }
         });
 
 //        recyclerView.setHasFixedSize(true);
+//        adapter.notifyDataSetChanged();
 
 
         return view;
